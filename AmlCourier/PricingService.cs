@@ -12,10 +12,6 @@ public class PricingService
             totalCost += GetParcelCost(parcel);
         }
 
-        if (order.IsSpeedyShippingEnabled()) {
-            totalCost *= 2;
-        }
-
         order.SetTotalCost(totalCost);
 
         return order;
