@@ -3,11 +3,8 @@ namespace AmlCourier;
 public class Order
 {
     private readonly List<Parcel> Parcels = new();
-
     private bool _speedyShipping;
-    
     private decimal _speedyShippingCost;
-
     private decimal _totalCost;
 
     public void AddParcel(Parcel parcel)

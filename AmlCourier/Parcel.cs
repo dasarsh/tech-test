@@ -6,17 +6,24 @@ public class Parcel
     public int WidthCm { get; }
     public int HeightCm { get; }
     public ParcelType Type { get; set; }
+    public decimal WeightKg { get; }
 
-    public Parcel(int lengthCm, int widthCm, int heightCm)
+    public Parcel(int lengthCm, int widthCm, int heightCm, decimal weightKg)
     {
         if (lengthCm <= 0 || widthCm <= 0 || heightCm <= 0)
         {
             throw new ArgumentException("Dimensions must be positive");
         }
 
+        if (weightKg <= 0)
+        {
+            throw new ArgumentException("Weight must be positive");
+        }
+
         LengthCm = lengthCm;
         WidthCm = widthCm;
         HeightCm = heightCm;
+        WeightKg = weightKg;
 
         SetType();
     }
