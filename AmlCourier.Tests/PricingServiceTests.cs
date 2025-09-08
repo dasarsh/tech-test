@@ -7,6 +7,7 @@ public class PricingServiceTests
     [InlineData(49, 49, 49, 3, 8)]
     [InlineData(99, 99, 99, 6, 15)]
     [InlineData(100, 1, 1, 10, 25)]
+    [InlineData(100, 1, 1, 51, 51)]
     public void Order_Cost_With_Single_Parcel_Is_Calculated(int length, int width, int height, decimal weight, decimal expectedCost)
     {
         var order = new Order();

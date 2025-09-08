@@ -46,5 +46,10 @@ public class Parcel
         {
             Type = ParcelType.XL;
         }
+
+        if (WeightKg > 50)
+        {
+            Type = ParcelType.Heavy;
+        }
     }
 }
