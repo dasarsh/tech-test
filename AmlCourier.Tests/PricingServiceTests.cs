@@ -9,7 +9,12 @@ public class PricingServiceTests
     [InlineData(100, 1, 1, 25)]
     public void Test1(int length, int width, int height, decimal expectedCost)
     {
-        var cost = PricingService.GetCost(length, width, height);
+        var order = new List<Parcel>
+        {
+            new Parcel(length, width, height),
+        };
+
+        var cost = PricingService.GetOrderCost(order);
         Assert.Equal(expectedCost, cost);
     }
 }

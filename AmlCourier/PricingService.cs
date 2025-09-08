@@ -2,7 +2,17 @@
 
 public class PricingService
 {
-    public static decimal GetCost(int length, int width, int height)
+    public static decimal GetOrderCost(List<Parcel> parcels)
+    {
+        decimal totalCost = 0M;
+        foreach (var parcel in parcels)
+        {
+            totalCost += GetParcelCost(parcel.LengthCm, parcel.WidthCm, parcel.HeightCm);
+        }
+        return totalCost;
+    }
+
+    public static decimal GetParcelCost(int length, int width, int height)
     {
         if (length < 10 && width < 10 && height < 10)
         {
