@@ -17,6 +17,8 @@ public class Parcel
         LengthCm = lengthCm;
         WidthCm = widthCm;
         HeightCm = heightCm;
+
+        SetType();
     }
 
     private void SetType()

@@ -2,33 +2,35 @@
 
 public class PricingService
 {
-    public static decimal GetOrderCost(List<Parcel> parcels)
+    public static Order GetOrderCost(Order order)
     {
         decimal totalCost = 0M;
+        var parcels = order.GetParcels();
+
         foreach (var parcel in parcels)
         {
             totalCost += GetParcelCost(parcel);
         }
-        return totalCost;
+
+        if (order.IsSpeedyShippingEnabled()) {
+            totalCost *= 2;
+        }
+
+        order.SetTotalCost(totalCost);
+
+        return order;
     }
 
     public static decimal GetParcelCost(Parcel parcel)
     {
-        if (parcel.LengthCm < 10 && parcel.WidthCm < 10 && parcel.HeightCm < 10)
+        var type = parcel.Type;
+        return type switch
         {
-            return 3M;
-        }
-
-        if (parcel.LengthCm < 50 && parcel.WidthCm < 50 && parcel.HeightCm < 50)
-        {
-            return 8M;
-        }
-
-        if (parcel.LengthCm < 100 && parcel.WidthCm < 100 && parcel.HeightCm < 100)
-        {
-            return 15M;
-        }
-
-        return 25M;
+            ParcelType.Small => 3M,
+            ParcelType.Medium => 8M,
+            ParcelType.Large => 15M,
+            ParcelType.XL => 25M,
+            _ => throw new ArgumentOutOfRangeException()
+        };  
     }
 }
